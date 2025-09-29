@@ -9,46 +9,37 @@
   <link rel="preload" href="assets/img/bg-hero.png" as="image" />
   <style>
     :root{
-      --bg0:#0B1220; --bg1:#0E2F34; --ink:#E6EBF5;
+      --bg0:#071018; --bg1:#0A1A28; --ink:#E6EBF5;
       --teal:#14B8A6; --sky:#38BDF8; --slate:#94A3B8;
       --card:#0f1b25; --ring:#1f3945; --muted:#6B7A8C;
     }
     *{box-sizing:border-box}
     html,body{height:100%}
-
     body{
       margin:0; color:var(--ink);
       font:16px/1.55 system-ui,-apple-system,Segoe UI,Roboto,Inter,Arial,sans-serif;
-
-      /* Layer order: image (top), vignette, DARK base gradients */
+      /* DARK (but not too dark) base gradient that always covers the canvas */
       background:
-        url("assets/img/bg-hero.png") no-repeat, /* your image */
-        radial-gradient(1200px 900px at 85% 100%, rgba(0,0,0,.55), transparent 60%),
-        linear-gradient(135deg, #071018 0%, #0A1A28 100%);
-      /* Position & size — first pair applies to the image only */
-      background-position: 92% 98%, center, center;   /* tweak 92% (x) and 98% (y) to nudge the image */
-      background-size: clamp(900px, 70vw, 1400px) auto, auto, auto;
-      background-attachment: fixed, fixed, fixed;     /* keeps the image anchored */
+        radial-gradient(1200px 900px at 85% 100%, rgba(0,0,0,.20), transparent 60%),
+        linear-gradient(135deg, var(--bg0) 0%, var(--bg1) 100%);
     }
-    @media (max-width:900px){
-      /* Make the drones a bit larger and keep them visible on mobile */
-      body{
-        background-position: 96% 102%, center, center;
-        background-size: clamp(720px, 105vw, 1400px) auto, auto, auto;
-      }
-    }
-
-    /* Optional extra darkness without touching the image (comment out if not needed) */
+    /* Gentle overlay for readability (lighter than before) */
     body::before{
-      content:"";
-      position: fixed;
-      inset: 0;
-      pointer-events: none;
-      z-index: 0;
+      content:""; position:fixed; inset:0; z-index:0; pointer-events:none;
       background:
-        radial-gradient(1100px 800px at 85% 100%, rgba(0,0,0,.35), rgba(0,0,0,.65) 60%),
-        linear-gradient(135deg, rgba(7,16,24,.85) 0%, rgba(10,26,40,.9) 100%);
+        radial-gradient(1100px 800px at 85% 100%, rgba(0,0,0,.10), rgba(0,0,0,.25) 60%);
     }
+
+    /* === Fixed drone image: always bottom-right, never cropped === */
+    .bg-drone{
+      position:fixed; right:0; bottom:0; z-index:0; pointer-events:none; user-select:none;
+      width:min(48vw, 980px); height:auto;          /* default scale */
+      filter: brightness(1.05) contrast(1.02);      /* make it a touch brighter */
+    }
+    /* Aspect-ratio aware sizing so it looks good on 16:10, 16:9, 21:9 */
+    @media (max-width: 900px){ .bg-drone{ width:min(70vw, 1100px); } }   /* phones/tablets */
+    @media (min-aspect-ratio: 21/9){ .bg-drone{ width:min(38vw, 980px); } } /* ultrawide */
+    @media (max-aspect-ratio: 16/10){ .bg-drone{ width:min(54vw, 1000px); } } /* tall screens */
 
     .wrap{position:relative; z-index:1; max-width:1120px; margin:0 auto; padding:32px 20px 60px}
     header h1{margin:6px 0 6px; font-weight:800; letter-spacing:.2px}
@@ -58,35 +49,24 @@
     .blurb strong{color:var(--ink); font-weight:800}
 
     .pillrow{display:flex; gap:8px; flex-wrap:wrap; margin:10px 0 24px}
-    .pill{
-      font-size:.82rem; color:#cfe7ff; background:#0b2a35;
-      border:1px solid #1e3a46; padding:3px 8px; border-radius:999px;
-    }
+    .pill{font-size:.82rem; color:#cfe7ff; background:#0b2a35; border:1px solid #1e3a46; padding:3px 8px; border-radius:999px;}
 
     .videogrid{display:grid; gap:18px; grid-template-columns:1fr;}
     @media (min-width:900px){ .videogrid{ grid-template-columns:1fr 1fr; } }
-    .card{
-      background:var(--card); border:1px solid var(--ring);
-      border-radius:14px; padding:14px 14px 18px; box-shadow:0 10px 30px rgba(0,0,0,.25);
-    }
+    .card{background:var(--card); border:1px solid var(--ring); border-radius:14px; padding:14px 14px 18px; box-shadow:0 10px 30px rgba(0,0,0,.25);}
     .card h3{margin:6px 8px 10px; font-size:1.05rem; font-weight:700}
-    .embed{
-      width:100%; aspect-ratio:16/9; border-radius:10px; overflow:hidden;
-      background:#09121a; border:1px solid #0f2a33;
-    }
+    .embed{width:100%; aspect-ratio:16/9; border-radius:10px; overflow:hidden; background:#09121a; border:1px solid #0f2a33;}
     .embed video{width:100%; height:100%; display:block; background:#000}
 
-    .hint{color:var(--muted); font-size:.9rem; margin-top:8px}
     .links{margin-top:8px}
     .links a{color:var(--sky); text-decoration:none}
     .links a:hover{text-decoration:underline}
-
-    footer{margin-top:28px; color:var(--slate); font-size:.92rem; display:flex; gap:10px; flex-wrap:wrap}
-    footer a{color:var(--sky); text-decoration:none}
-    footer a:hover{text-decoration:underline}
   </style>
 </head>
 <body>
+  <!-- NEW: the background image element -->
+  <img class="bg-drone" src="assets/img/bg-hero.png" alt="" aria-hidden="true" />
+
   <div class="wrap">
     <header>
       <h1>FlockPilot – LLM OS for Droids</h1>
@@ -99,10 +79,8 @@
       Built for solar O&amp;M, forest patrol, and precision farming.
     </p>
     <div class="pillrow">
-      <span class="pill">deterministic</span>
-      <span class="pill">auditable</span>
-      <span class="pill">radio-light comms</span>
-      <span class="pill">plans are contracts</span>
+      <span class="pill">deterministic</span><span class="pill">auditable</span>
+      <span class="pill">radio-light comms</span><span class="pill">plans are contracts</span>
     </div>
 
     <section class="videogrid">
@@ -115,10 +93,8 @@
           </video>
         </div>
         <div class="pillrow">
-          <span class="pill">min-sep ≥ 3 m</span>
-          <span class="pill">NFZ: PASS</span>
-          <span class="pill">replay_id stable</span>
-          <span class="pill">signed evidence pack</span>
+          <span class="pill">min-sep ≥ 3 m</span><span class="pill">NFZ: PASS</span>
+          <span class="pill">replay_id stable</span><span class="pill">signed evidence pack</span>
         </div>
       </article>
 
@@ -131,9 +107,7 @@
           </video>
         </div>
         <div class="pillrow">
-          <span class="pill">no contracts</span>
-          <span class="pill">no shield</span>
-          <span class="pill">non-deterministic</span>
+          <span class="pill">no contracts</span><span class="pill">no shield</span><span class="pill">non-deterministic</span>
         </div>
       </article>
     </section>
