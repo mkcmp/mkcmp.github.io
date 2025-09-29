@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>FlockPilot - LLM OS for Droids</title>
+  <title>FlockPilot – LLM OS for Droids</title>
   <meta name="description" content="Type the mission → contracted plan → shielded execution → tamper-evident replay. Side-by-side clips: with planner vs baseline." />
   <meta name="theme-color" content="#0B1220" />
   <link rel="preload" href="assets/img/bg-hero.png" as="image" />
@@ -15,23 +15,42 @@
     }
     *{box-sizing:border-box}
     html,body{height:100%}
+
     body{
       margin:0; color:var(--ink);
       font:16px/1.55 system-ui,-apple-system,Segoe UI,Roboto,Inter,Arial,sans-serif;
 
-      /* Background: image (bottom-right) + two gentle gradients for readability */
+      /* Layer order: image (top), vignette, DARK base gradients */
       background:
-        url("assets/img/bg-hero.png") no-repeat right bottom fixed,
-        radial-gradient(1100px 800px at 90% 100%, rgba(13,62,67,.85) 0%, var(--bg0) 60%) fixed,
-        linear-gradient(135deg, var(--bg0) 0%, var(--bg1) 100%) fixed;
-      /* size only applies to the first layer (the image) */
-      background-size: min(70vw, 1200px) auto, auto, auto;
+        url("assets/img/bg-hero.png") no-repeat, /* your image */
+        radial-gradient(1200px 900px at 85% 100%, rgba(0,0,0,.55), transparent 60%),
+        linear-gradient(135deg, #071018 0%, #0A1A28 100%);
+      /* Position & size — first pair applies to the image only */
+      background-position: 92% 98%, center, center;   /* tweak 92% (x) and 98% (y) to nudge the image */
+      background-size: clamp(900px, 70vw, 1400px) auto, auto, auto;
+      background-attachment: fixed, fixed, fixed;     /* keeps the image anchored */
     }
     @media (max-width:900px){
-      body{ background-size: 105vw auto, auto, auto; } /* keep drones visible on mobile */
+      /* Make the drones a bit larger and keep them visible on mobile */
+      body{
+        background-position: 96% 102%, center, center;
+        background-size: clamp(720px, 105vw, 1400px) auto, auto, auto;
+      }
     }
 
-    .wrap{max-width:1120px; margin:0 auto; padding:32px 20px 60px}
+    /* Optional extra darkness without touching the image (comment out if not needed) */
+    body::before{
+      content:"";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      background:
+        radial-gradient(1100px 800px at 85% 100%, rgba(0,0,0,.35), rgba(0,0,0,.65) 60%),
+        linear-gradient(135deg, rgba(7,16,24,.85) 0%, rgba(10,26,40,.9) 100%);
+    }
+
+    .wrap{position:relative; z-index:1; max-width:1120px; margin:0 auto; padding:32px 20px 60px}
     header h1{margin:6px 0 6px; font-weight:800; letter-spacing:.2px}
     header .tag{color:var(--slate); font-size:1.05rem}
 
@@ -70,25 +89,23 @@
 <body>
   <div class="wrap">
     <header>
-      <h1>FlockPilot - LLM OS for Droids</h1>
-      <div class="tag">Words → Contracted Plan → Shielded Execution → Tamper‑Evident Replay</div>
+      <h1>FlockPilot – LLM OS for Droids</h1>
+      <div class="tag">Words → Contracted Plan → Shielded Execution → Tamper-Evident Replay</div>
     </header>
 
-    <!-- tiny extra context (kept compact) -->
     <p class="blurb">
-      <strong>What it is:</strong> local‑first runtime that turns mission text into a <em>contracted plan</em>,
+      <strong>What it is:</strong> local-first runtime that turns mission text into a <em>contracted plan</em>,
       enforces safety with an online <em>shield</em>, and records a <em>replayable log</em> for audit.
       Built for solar O&amp;M, forest patrol, and precision farming.
     </p>
     <div class="pillrow">
       <span class="pill">deterministic</span>
       <span class="pill">auditable</span>
-      <span class="pill">radio‑light comms</span>
+      <span class="pill">radio-light comms</span>
       <span class="pill">plans are contracts</span>
     </div>
 
     <section class="videogrid">
-      <!-- WITH PLANNER -->
       <article class="card">
         <h3>With Planner (contracts + shield)</h3>
         <div class="embed">
@@ -98,14 +115,13 @@
           </video>
         </div>
         <div class="pillrow">
-          <span class="pill">min‑sep ≥ 3 m</span>
+          <span class="pill">min-sep ≥ 3 m</span>
           <span class="pill">NFZ: PASS</span>
           <span class="pill">replay_id stable</span>
           <span class="pill">signed evidence pack</span>
         </div>
       </article>
 
-      <!-- BASELINE -->
       <article class="card">
         <h3>Baseline (planner off)</h3>
         <div class="embed">
@@ -117,19 +133,17 @@
         <div class="pillrow">
           <span class="pill">no contracts</span>
           <span class="pill">no shield</span>
-          <span class="pill">non‑deterministic</span>
+          <span class="pill">non-deterministic</span>
         </div>
       </article>
     </section>
 
-    <!-- Small, optional links to artifacts (can hide until ready) -->
     <div class="links">
       Evidence &amp; acceptance artifacts:
       <a href="assets/evidence/acceptance_matrix.pdf">acceptance</a> •
       <a href="assets/evidence/scorecard.pdf">KPI scorecard</a> •
       <a href="assets/evidence/replay_logs.zip">replay logs</a>
     </div>
-    
   </div>
 </body>
 </html>
