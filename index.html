@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>FlockPilot — LLM OS for Droids</title>
+  <meta name="description" content="Type the mission → contracted plan → shielded execution → tamper-evident replay. Two short clips: with planner vs baseline." />
+  <meta property="og:title" content="FlockPilot — LLM OS for Droids" />
+  <meta property="og:description" content="Type the mission → contracted plan → shielded execution → tamper-evident replay. Two short clips: with planner vs baseline." />
+  <meta property="og:type" content="website" />
+  <meta name="theme-color" content="#0B1220" />
+  <style>
+    :root{
+      --bg0:#0B1220; --bg1:#0E2F34; --ink:#E6EBF5;
+      --teal:#14B8A6; --sky:#38BDF8; --slate:#94A3B8;
+      --card:#0f1b25; --ring:#1f3945; --muted:#6B7A8C;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0; color:var(--ink);
+      font:16px/1.55 system-ui,-apple-system,Segoe UI,Roboto,Inter,Arial,sans-serif;
+      background:
+        radial-gradient(1100px 800px at 90% 100%, #0d3e43 0%, var(--bg0) 60%) fixed,
+        linear-gradient(135deg, var(--bg0) 0%, var(--bg1) 100%) fixed;
+    }
+    .wrap{max-width:1120px; margin:0 auto; padding:32px 20px 60px}
+    header h1{margin:6px 0 6px; font-weight:800; letter-spacing:.2px}
+    header .tag{color:var(--slate); font-size:1.05rem}
+    .blurb{
+      margin:16px 0 24px; color:var(--slate);
+      border-left:3px solid var(--teal); padding:10px 12px;
+    }
+    .blurb strong{color:var(--ink); font-weight:800}
+    .videogrid{
+      display:grid; gap:18px; grid-template-columns:1fr;
+    }
+    @media (min-width:900px){ .videogrid{ grid-template-columns:1fr 1fr; } }
+    .card{
+      background:var(--card); border:1px solid var(--ring);
+      border-radius:14px; padding:14px 14px 18px;
+      box-shadow:0 10px 30px rgba(0,0,0,.25);
+    }
+    .card h3{margin:6px 8px 10px; font-size:1.05rem; font-weight:700}
+    .embed{
+      width:100%; aspect-ratio:16/9; border-radius:10px; overflow:hidden;
+      background:#09121a; border:1px solid #0f2a33;
+    }
+    .embed video{
+      width:100%; height:100%; display:block; background:#000;
+    }
+    .pillrow{display:flex; gap:8px; flex-wrap:wrap; margin:10px 6px 0}
+    .pill{
+      font-size:.82rem; color:#cfe7ff; background:#0b2a35;
+      border:1px solid #1e3a46; padding:3px 8px; border-radius:999px;
+    }
+    .footer{
+      margin-top:28px; color:var(--slate); font-size:.92rem; display:flex; gap:10px; flex-wrap:wrap;
+    }
+    .footer a{color:var(--sky); text-decoration:none}
+    .footer a:hover{text-decoration:underline}
+    .hint{color:var(--muted); font-size:.85rem; margin-top:6px}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <h1>FlockPilot — LLM OS for Droids</h1>
+      <div class="tag">Words → Contracted Plan → Shielded Execution → Tamper-Evident Replay</div>
+    </header>
+
+    <p class="blurb">
+      Two short clips show the wedge:
+      <strong>with the planner</strong> (contracts &amp; shield) vs
+      <strong>baseline</strong>. Same mission text; one produces
+      <strong>audit-grade evidence</strong>.
+    </p>
+
+    <section class="videogrid">
+      <!-- WITH PLANNER -->
+      <article class="card">
+        <h3>With Planner (contracts + shield)</h3>
+        <div class="embed">
+          <video
+            controls
+            preload="metadata"
+            playsinline
+            poster="assets/posters/planner.jpg">
+            <source src="assets/videos/planner.mp4" type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
+        </div>
+        <div class="pillrow">
+          <span class="pill">deterministic replay</span>
+          <span class="pill">min-sep ≥ 3 m</span>
+          <span class="pill">NFZ: PASS</span>
+          <span class="pill">signed evidence pack</span>
+        </div>
+      </article>
+
+      <!-- BASELINE -->
+      <article class="card">
+        <h3>Baseline (planner off)</h3>
+        <div class="embed">
+          <video
+            controls
+            preload="metadata"
+            playsinline
+            poster="assets/posters/baseline.jpg">
+            <source src="assets/videos/baseline.mp4" type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
+        </div>
+        <div class="pillrow">
+          <span class="pill">no contracts</span>
+          <span class="pill">no shield</span>
+          <span class="pill">non-deterministic</span>
+        </div>
+      </article>
+    </section>
+
+    <div class="hint">
+      <!-- Optional: link to artifacts when ready -->
+      Evidence &amp; acceptance artifacts:
+      <a href="assets/evidence/acceptance_matrix.pdf">acceptance matrix</a> •
+      <a href="assets/evidence/scorecard.pdf">KPI scorecard</a> •
+      <a href="assets/evidence/replay_logs.zip">replay logs</a>
+    </div>
+
+    <div class="footer">
+      <span>Contact: <a href="mailto:YOUR_EMAIL">YOUR_EMAIL</a></span>
+      <span>Repo: <a href="https://github.com/YOUR_GITHUB_HANDLE/YOUR_REPO">github.com/YOUR_GITHUB_HANDLE/YOUR_REPO</a></span>
+    </div>
+  </div>
+
+  <!--
+    Notes:
+    - Put your MP4s at /assets/videos/planner.mp4 and /assets/videos/baseline.mp4 (keep files <100MB for GitHub).
+    - Add poster frames at /assets/posters/*.jpg to display a thumbnail before playback.
+    - Replace links in the "hint" block or remove that block entirely.
+  -->
+</body>
+</html>
