@@ -6,50 +6,27 @@
   <title>FlockPilot – LLM OS for Droids</title>
   <meta name="description" content="Type the mission → contracted plan → shielded execution → tamper-evident replay. Side-by-side clips: with planner vs baseline." />
   <meta name="theme-color" content="#0B1220" />
-  <link rel="preload" href="assets/img/bg-hero.png" as="image" />
   <style>
     :root{
       /* brand & text */
-      --bg0:#0a1621; --bg1:#0f2334; --ink:#E6EBF5;
+      --bg0:#0B1220; --bg1:#0E2F34; --ink:#E6EBF5;
       --teal:#14B8A6; --sky:#38BDF8; --slate:#94A3B8;
       --card:#0f1b25; --ring:#1f3945; --muted:#6B7A8C;
-
-      /* background image tuning knobs (easy to tweak) */
-      --bg-scale: 50vw;   /* default width as viewport % */
-      --bg-max:  1080px;  /* cap so it won't grow absurdly */
-      --bg-right: -4vw;   /* push image slightly offscreen to the right */
-      --bg-bottom: -3vh;  /* push down a touch */
     }
 
     *{box-sizing:border-box}
     html,body{height:100%}
+
+    /* ORIGINAL gradient background (no image) */
     body{
       margin:0; color:var(--ink);
       font:16px/1.55 system-ui,-apple-system,Segoe UI,Roboto,Inter,Arial,sans-serif;
-      /* dark (but not too dark) base that always covers the canvas */
       background:
-        radial-gradient(1200px 900px at 85% 100%, rgba(0,0,0,.12), transparent 60%),
+        radial-gradient(1100px 800px at 90% 100%, rgba(13,62,67,.85) 0%, var(--bg0) 60%),
         linear-gradient(135deg, var(--bg0) 0%, var(--bg1) 100%);
     }
-    /* subtle readability overlay; lighter than before */
-    body::before{
-      content:""; position:fixed; inset:0; z-index:0; pointer-events:none;
-      background: radial-gradient(1000px 720px at 82% 98%, rgba(0,0,0,.09), rgba(0,0,0,.18) 65%);
-    }
 
-    /* fixed drone image: always bottom-right, never cropped */
-    .bg-drone{
-      position:fixed; right:var(--bg-right); bottom:var(--bg-bottom);
-      z-index:0; pointer-events:none; user-select:none;
-      width:clamp(780px, var(--bg-scale), var(--bg-max)); height:auto;
-      filter: brightness(1.08) contrast(1.04);
-    }
-    /* aspect-aware presets so it feels centered on 16:10, 16:9, 21:9 */
-    @media (min-aspect-ratio: 21/9){  :root{ --bg-scale: 40vw; --bg-right: -2vw; --bg-bottom: -2vh; } }
-    @media (max-aspect-ratio: 16/10){ :root{ --bg-scale: 56vw; --bg-right: -5vw; --bg-bottom: -4vh; } }
-    @media (max-width: 900px){        :root{ --bg-scale: 80vw; --bg-right: -6vw; --bg-bottom: -4vh; } }
-
-    .wrap{position:relative; z-index:1; max-width:1120px; margin:0 auto; padding:32px 20px 60px}
+    .wrap{max-width:1120px; margin:0 auto; padding:32px 20px 60px}
     header h1{margin:6px 0 6px; font-weight:800; letter-spacing:.2px}
     header .tag{color:var(--slate); font-size:1.05rem}
 
@@ -69,15 +46,16 @@
     .embed{width:100%; aspect-ratio:16/9; border-radius:10px; overflow:hidden; background:#09121a; border:1px solid #0f2a33;}
     .embed video{width:100%; height:100%; display:block; background:#000}
 
-    .links{margin:10px 0 6px}
-    .links a{color:var(--sky); text-decoration:none}
-    .links a:hover{text-decoration:underline}
-
     .grid-3{display:grid; gap:14px; grid-template-columns:1fr; margin-top:24px}
     @media (min-width:900px){ .grid-3{ grid-template-columns:repeat(3,1fr); } }
-    .mini{background:rgba(15,27,37,.7); border:1px solid var(--ring); border-radius:12px; padding:12px 14px}
+    .mini{background:rgba(15,27,37,.72); border:1px solid var(--ring); border-radius:12px; padding:12px 14px}
     .mini h4{margin:0 0 6px; font-size:1rem}
     .mini p{margin:0; color:var(--slate); font-size:.95rem}
+    .mini ul{margin:0; padding-left:18px; color:var(--slate); font-size:.95rem}
+
+    .links{margin:18px 0 6px}
+    .links a{color:var(--sky); text-decoration:none}
+    .links a:hover{text-decoration:underline}
 
     footer{margin-top:26px; color:var(--slate); font-size:.92rem; display:flex; gap:10px; flex-wrap:wrap}
     footer a{color:var(--sky); text-decoration:none}
@@ -85,9 +63,6 @@
   </style>
 </head>
 <body>
-  <!-- background image element -->
-  <img class="bg-drone" src="assets/img/bg-hero.png" alt="" aria-hidden="true" />
-
   <div class="wrap">
     <header>
       <h1>FlockPilot – LLM OS for Droids</h1>
@@ -145,19 +120,25 @@
       </article>
     </section>
 
-    <!-- concise system overview (new info) -->
+    <!-- concise, Speedrun-friendly info -->
     <section class="grid-3">
       <div class="mini">
-        <h4>How it works</h4>
-        <p>Mission text → <b>Plan Contract</b> (LLM compiler) → <b>Budgeted Scheduler</b> → <b>Shield</b> (verifiers) → <b>ReplayChain</b> (deterministic audit).</p>
+        <h4>Why it’s different</h4>
+        <p>Vertical integration: <b>LLM planner</b> + <b>online shield</b> + <b>deterministic kernel</b>.
+           Not just a demo—<b>spec + conformance + signed evidence packs</b> (contracts & replay).</p>
       </div>
       <div class="mini">
-        <h4>Acceptance (M0)</h4>
-        <p>G1 replay equality, G2 0 violations (min-sep, NFZ), G3 budgets (planner p95, drop-late, comms), G4 parity across seeds.</p>
+        <h4>What we prove (M0)</h4>
+        <p>Same <code>replay_id</code> (exact replay), <b>0 safety violations</b> (min-sep, NFZ),
+           budgets met (planner p95, drop-late, comms), parity across seeds.</p>
       </div>
       <div class="mini">
-        <h4>Design-partner offer</h4>
-        <p>2-week pilot: shadow mode → shield on. Deliverables: lanes, KPIs, and a signed evidence pack ready for compliance.</p>
+        <h4>Speedrun deliverables</h4>
+        <ul>
+          <li><b>Week 1:</b> M0 acceptance clip + signed evidence pack</li>
+          <li><b>By program end:</b> Planner v2 A/B &gt; v1; publish <b>FPC/FRL spec v1.0</b> + <code>fp conformance</code></li>
+          <li><b>Traction:</b> 2 design-partner LOIs (solar/forestry/farming)</li>
+        </ul>
       </div>
     </section>
 
@@ -170,7 +151,7 @@
     </div>
 
     <footer>
-      <span>Videos: hosted natively on GitHub</span>
+      <span>Videos: hosted natively on GitHub (≤100&nbsp;MB each)</span>
     </footer>
   </div>
 </body>
