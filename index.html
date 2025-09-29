@@ -9,47 +9,58 @@
   <link rel="preload" href="assets/img/bg-hero.png" as="image" />
   <style>
     :root{
-      --bg0:#071018; --bg1:#0A1A28; --ink:#E6EBF5;
+      /* brand & text */
+      --bg0:#0a1621; --bg1:#0f2334; --ink:#E6EBF5;
       --teal:#14B8A6; --sky:#38BDF8; --slate:#94A3B8;
       --card:#0f1b25; --ring:#1f3945; --muted:#6B7A8C;
+
+      /* background image tuning knobs (easy to tweak) */
+      --bg-scale: 50vw;   /* default width as viewport % */
+      --bg-max:  1080px;  /* cap so it won't grow absurdly */
+      --bg-right: -4vw;   /* push image slightly offscreen to the right */
+      --bg-bottom: -3vh;  /* push down a touch */
     }
+
     *{box-sizing:border-box}
     html,body{height:100%}
     body{
       margin:0; color:var(--ink);
       font:16px/1.55 system-ui,-apple-system,Segoe UI,Roboto,Inter,Arial,sans-serif;
-      /* DARK (but not too dark) base gradient that always covers the canvas */
+      /* dark (but not too dark) base that always covers the canvas */
       background:
-        radial-gradient(1200px 900px at 85% 100%, rgba(0,0,0,.20), transparent 60%),
+        radial-gradient(1200px 900px at 85% 100%, rgba(0,0,0,.12), transparent 60%),
         linear-gradient(135deg, var(--bg0) 0%, var(--bg1) 100%);
     }
-    /* Gentle overlay for readability (lighter than before) */
+    /* subtle readability overlay; lighter than before */
     body::before{
       content:""; position:fixed; inset:0; z-index:0; pointer-events:none;
-      background:
-        radial-gradient(1100px 800px at 85% 100%, rgba(0,0,0,.10), rgba(0,0,0,.25) 60%);
+      background: radial-gradient(1000px 720px at 82% 98%, rgba(0,0,0,.09), rgba(0,0,0,.18) 65%);
     }
 
-    /* === Fixed drone image: always bottom-right, never cropped === */
+    /* fixed drone image: always bottom-right, never cropped */
     .bg-drone{
-      position:fixed; right:0; bottom:0; z-index:0; pointer-events:none; user-select:none;
-      width:min(48vw, 980px); height:auto;          /* default scale */
-      filter: brightness(1.05) contrast(1.02);      /* make it a touch brighter */
+      position:fixed; right:var(--bg-right); bottom:var(--bg-bottom);
+      z-index:0; pointer-events:none; user-select:none;
+      width:clamp(780px, var(--bg-scale), var(--bg-max)); height:auto;
+      filter: brightness(1.08) contrast(1.04);
     }
-    /* Aspect-ratio aware sizing so it looks good on 16:10, 16:9, 21:9 */
-    @media (max-width: 900px){ .bg-drone{ width:min(70vw, 1100px); } }   /* phones/tablets */
-    @media (min-aspect-ratio: 21/9){ .bg-drone{ width:min(38vw, 980px); } } /* ultrawide */
-    @media (max-aspect-ratio: 16/10){ .bg-drone{ width:min(54vw, 1000px); } } /* tall screens */
+    /* aspect-aware presets so it feels centered on 16:10, 16:9, 21:9 */
+    @media (min-aspect-ratio: 21/9){  :root{ --bg-scale: 40vw; --bg-right: -2vw; --bg-bottom: -2vh; } }
+    @media (max-aspect-ratio: 16/10){ :root{ --bg-scale: 56vw; --bg-right: -5vw; --bg-bottom: -4vh; } }
+    @media (max-width: 900px){        :root{ --bg-scale: 80vw; --bg-right: -6vw; --bg-bottom: -4vh; } }
 
     .wrap{position:relative; z-index:1; max-width:1120px; margin:0 auto; padding:32px 20px 60px}
     header h1{margin:6px 0 6px; font-weight:800; letter-spacing:.2px}
     header .tag{color:var(--slate); font-size:1.05rem}
 
-    .blurb{margin:14px 0 18px; color:var(--slate); border-left:3px solid var(--teal); padding:10px 12px;}
+    .blurb{margin:14px 0 10px; color:var(--slate); border-left:3px solid var(--teal); padding:10px 12px;}
     .blurb strong{color:var(--ink); font-weight:800}
 
-    .pillrow{display:flex; gap:8px; flex-wrap:wrap; margin:10px 0 24px}
+    .pillrow{display:flex; gap:8px; flex-wrap:wrap; margin:10px 0 20px}
     .pill{font-size:.82rem; color:#cfe7ff; background:#0b2a35; border:1px solid #1e3a46; padding:3px 8px; border-radius:999px;}
+
+    .callout{margin:8px 0 22px; color:var(--slate); font-size:.98rem}
+    .callout b{color:var(--ink)}
 
     .videogrid{display:grid; gap:18px; grid-template-columns:1fr;}
     @media (min-width:900px){ .videogrid{ grid-template-columns:1fr 1fr; } }
@@ -58,13 +69,23 @@
     .embed{width:100%; aspect-ratio:16/9; border-radius:10px; overflow:hidden; background:#09121a; border:1px solid #0f2a33;}
     .embed video{width:100%; height:100%; display:block; background:#000}
 
-    .links{margin-top:8px}
+    .links{margin:10px 0 6px}
     .links a{color:var(--sky); text-decoration:none}
     .links a:hover{text-decoration:underline}
+
+    .grid-3{display:grid; gap:14px; grid-template-columns:1fr; margin-top:24px}
+    @media (min-width:900px){ .grid-3{ grid-template-columns:repeat(3,1fr); } }
+    .mini{background:rgba(15,27,37,.7); border:1px solid var(--ring); border-radius:12px; padding:12px 14px}
+    .mini h4{margin:0 0 6px; font-size:1rem}
+    .mini p{margin:0; color:var(--slate); font-size:.95rem}
+
+    footer{margin-top:26px; color:var(--slate); font-size:.92rem; display:flex; gap:10px; flex-wrap:wrap}
+    footer a{color:var(--sky); text-decoration:none}
+    footer a:hover{text-decoration:underline}
   </style>
 </head>
 <body>
-  <!-- NEW: the background image element -->
+  <!-- background image element -->
   <img class="bg-drone" src="assets/img/bg-hero.png" alt="" aria-hidden="true" />
 
   <div class="wrap">
@@ -78,9 +99,17 @@
       enforces safety with an online <em>shield</em>, and records a <em>replayable log</em> for audit.
       Built for solar O&amp;M, forest patrol, and precision farming.
     </p>
+
     <div class="pillrow">
-      <span class="pill">deterministic</span><span class="pill">auditable</span>
-      <span class="pill">radio-light comms</span><span class="pill">plans are contracts</span>
+      <span class="pill">deterministic</span>
+      <span class="pill">auditable</span>
+      <span class="pill">radio-light comms</span>
+      <span class="pill">plans are contracts</span>
+    </div>
+
+    <div class="callout">
+      <b>What you’ll see below:</b> same mission text, two runs — <b>with planner</b> (contracts + shield)
+      vs <b>baseline</b>. Only the former yields a <b>signed evidence pack</b> and a stable <code>replay_id</code>.
     </div>
 
     <section class="videogrid">
@@ -93,8 +122,10 @@
           </video>
         </div>
         <div class="pillrow">
-          <span class="pill">min-sep ≥ 3 m</span><span class="pill">NFZ: PASS</span>
-          <span class="pill">replay_id stable</span><span class="pill">signed evidence pack</span>
+          <span class="pill">min-sep ≥ 3 m</span>
+          <span class="pill">NFZ: PASS</span>
+          <span class="pill">replay_id stable</span>
+          <span class="pill">signed evidence pack</span>
         </div>
       </article>
 
@@ -107,17 +138,40 @@
           </video>
         </div>
         <div class="pillrow">
-          <span class="pill">no contracts</span><span class="pill">no shield</span><span class="pill">non-deterministic</span>
+          <span class="pill">no contracts</span>
+          <span class="pill">no shield</span>
+          <span class="pill">non-deterministic</span>
         </div>
       </article>
     </section>
 
+    <!-- concise system overview (new info) -->
+    <section class="grid-3">
+      <div class="mini">
+        <h4>How it works</h4>
+        <p>Mission text → <b>Plan Contract</b> (LLM compiler) → <b>Budgeted Scheduler</b> → <b>Shield</b> (verifiers) → <b>ReplayChain</b> (deterministic audit).</p>
+      </div>
+      <div class="mini">
+        <h4>Acceptance (M0)</h4>
+        <p>G1 replay equality, G2 0 violations (min-sep, NFZ), G3 budgets (planner p95, drop-late, comms), G4 parity across seeds.</p>
+      </div>
+      <div class="mini">
+        <h4>Design-partner offer</h4>
+        <p>2-week pilot: shadow mode → shield on. Deliverables: lanes, KPIs, and a signed evidence pack ready for compliance.</p>
+      </div>
+    </section>
+
+    <!-- optional artifacts -->
     <div class="links">
       Evidence &amp; acceptance artifacts:
       <a href="assets/evidence/acceptance_matrix.pdf">acceptance</a> •
       <a href="assets/evidence/scorecard.pdf">KPI scorecard</a> •
       <a href="assets/evidence/replay_logs.zip">replay logs</a>
     </div>
+
+    <footer>
+      <span>Videos: hosted natively on GitHub</span>
+    </footer>
   </div>
 </body>
 </html>
