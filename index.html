@@ -26,38 +26,75 @@
         linear-gradient(135deg, var(--bg0) 0%, var(--bg1) 100%);
     }
 
-    .wrap{max-width:1120px; margin:0 auto; padding:32px 20px 60px}
-    header h1{margin:6px 0 6px; font-weight:800; letter-spacing:.2px}
-    header .tag{color:var(--slate); font-size:1.05rem}
+    .wrap{max-width:1120px; margin:0 auto; padding:40px 20px 80px}
+    header{display:flex; flex-direction:column; gap:12px; margin-bottom:18px}
+    header h1{margin:0; font-weight:800; letter-spacing:.2px; font-size:clamp(2.25rem,4vw,3.1rem)}
+    header .tag{color:var(--slate); font-size:1.05rem; letter-spacing:.4px}
 
-    .blurb{margin:14px 0 10px; color:var(--slate); border-left:3px solid var(--teal); padding:10px 12px;}
-    .blurb strong{color:var(--ink); font-weight:800}
+    .hero-intro{display:grid; gap:20px; grid-template-columns:1fr; align-items:center; margin-bottom:26px}
+    @media (min-width:960px){ .hero-intro{grid-template-columns:1.15fr .85fr; gap:42px;} }
+    .hero-copy{display:grid; gap:18px}
+    .hero-copy p{margin:0; color:var(--slate); font-size:1.05rem}
+    .cta-row{display:flex; flex-wrap:wrap; gap:12px}
+    .cta{display:inline-flex; align-items:center; gap:10px; padding:12px 20px; border-radius:999px; font-weight:600; text-decoration:none; transition:transform .2s ease, box-shadow .2s ease;}
+    .cta.primary{background:var(--teal); color:#052b2c; box-shadow:0 12px 25px rgba(20,184,166,.28);}
+    .cta.secondary{border:1px solid var(--ring); color:var(--sky); background:rgba(9,22,32,.7);}
+    .cta:hover{transform:translateY(-1px); box-shadow:0 18px 32px rgba(9,22,32,.32);}
 
-    .pillrow{display:flex; gap:8px; flex-wrap:wrap; margin:10px 0 20px}
-    .pill{font-size:.82rem; color:#cfe7ff; background:#0b2a35; border:1px solid #1e3a46; padding:3px 8px; border-radius:999px;}
+    .hero-art{background:rgba(15,27,37,.6); border:1px solid var(--ring); border-radius:18px; padding:22px; box-shadow:0 10px 30px rgba(0,0,0,.28);}
+    .hero-art h3{margin:0 0 12px; font-size:1rem; letter-spacing:.4px; color:var(--sky)}
+    .hero-art ul{margin:0; padding-left:20px; font-size:.96rem; color:var(--slate);}
+    .hero-art li{margin-bottom:6px}
 
-    .callout{margin:8px 0 22px; color:var(--slate); font-size:.98rem}
+    .checklist{margin:24px 0 32px; display:grid; grid-template-columns:1fr; gap:12px}
+    @media (min-width:720px){ .checklist{grid-template-columns:repeat(2, minmax(0,1fr));} }
+    .check-item{display:flex; gap:12px; align-items:flex-start; background:rgba(12,29,41,.78); border:1px solid var(--ring); border-radius:12px; padding:12px 14px;}
+    .check-icon{width:26px; height:26px; border-radius:50%; background:rgba(20,184,166,.16); display:flex; align-items:center; justify-content:center; color:var(--teal); font-weight:700; font-size:1rem;}
+    .check-body{font-size:.98rem; color:var(--slate);}
+    .check-body b{color:var(--ink)}
+
+    .callout{margin:10px 0 24px; color:var(--slate); font-size:1rem}
     .callout b{color:var(--ink)}
 
     .videogrid{display:grid; gap:18px; grid-template-columns:1fr;}
     @media (min-width:900px){ .videogrid{ grid-template-columns:1fr 1fr; } }
-    .card{background:var(--card); border:1px solid var(--ring); border-radius:14px; padding:14px 14px 18px; box-shadow:0 10px 30px rgba(0,0,0,.25);}
-    .card h3{margin:6px 8px 10px; font-size:1.05rem; font-weight:700}
+    .card{background:var(--card); border:1px solid var(--ring); border-radius:16px; padding:18px 18px 24px; box-shadow:0 12px 34px rgba(0,0,0,.3);} 
+    .card h3{margin:0 8px 12px; font-size:1.1rem; font-weight:700}
     .embed{width:100%; aspect-ratio:16/9; border-radius:10px; overflow:hidden; background:#09121a; border:1px solid #0f2a33;}
     .embed video{width:100%; height:100%; display:block; background:#000}
+    .metrics-table{margin-top:16px; border-collapse:collapse; width:100%; font-size:.93rem;}
+    .metrics-table th,.metrics-table td{padding:8px 10px; text-align:left; border-bottom:1px solid rgba(148,163,184,.16);}
+    .metrics-table th{color:var(--slate); font-weight:600; font-size:.85rem; letter-spacing:.3px; text-transform:uppercase;}
+    .metrics-table caption{caption-side:bottom; margin-top:10px; color:var(--muted); font-size:.8rem;}
 
-    .grid-3{display:grid; gap:14px; grid-template-columns:1fr; margin-top:24px}
+    .grid-3{display:grid; gap:16px; grid-template-columns:1fr; margin-top:32px}
     @media (min-width:900px){ .grid-3{ grid-template-columns:repeat(3,1fr); } }
-    .mini{background:rgba(15,27,37,.72); border:1px solid var(--ring); border-radius:12px; padding:12px 14px}
-    .mini h4{margin:0 0 6px; font-size:1rem}
+    .mini{background:rgba(15,27,37,.72); border:1px solid var(--ring); border-radius:14px; padding:16px 18px}
+    .mini h4{margin:0 0 8px; font-size:1.05rem; letter-spacing:.3px}
     .mini p{margin:0; color:var(--slate); font-size:.95rem}
     .mini ul{margin:0; padding-left:18px; color:var(--slate); font-size:.95rem}
 
-    .links{margin:18px 0 6px}
+    .milestones{margin:38px 0 42px; padding:24px 26px; border-radius:18px; background:linear-gradient(135deg, rgba(20,184,166,.1), rgba(56,189,248,.08)); border:1px solid rgba(20,184,166,.25); display:grid; gap:22px}
+    .milestones h3{margin:0; font-size:1.2rem; letter-spacing:.4px}
+    .progress-row{display:grid; gap:10px}
+    .progress-row strong{font-size:.95rem; letter-spacing:.3px}
+    progress{width:100%; height:10px; border-radius:999px; background:rgba(9,25,35,.6); overflow:hidden;}
+    progress::-webkit-progress-bar{background:rgba(9,25,35,.6); border-radius:999px;}
+    progress::-webkit-progress-value{background:var(--teal); border-radius:999px;}
+    progress::-moz-progress-bar{background:var(--teal); border-radius:999px;}
+    .milestone-note{margin:0; font-size:.92rem; color:var(--slate);}
+
+    .faq{margin:42px 0 28px; display:grid; gap:18px}
+    .faq h3{margin:0; font-size:1.15rem}
+    .faq-item{background:rgba(9,25,35,.66); border:1px solid var(--ring); border-radius:14px; padding:16px 18px}
+    .faq-item h4{margin:0 0 6px; font-size:1rem}
+    .faq-item p{margin:0; color:var(--slate); font-size:.95rem}
+
+    .links{margin:26px 0 14px; font-size:.95rem}
     .links a{color:var(--sky); text-decoration:none}
     .links a:hover{text-decoration:underline}
 
-    footer{margin-top:26px; color:var(--slate); font-size:.92rem; display:flex; gap:10px; flex-wrap:wrap}
+    footer{margin-top:34px; color:var(--slate); font-size:.92rem; display:flex; gap:14px; flex-wrap:wrap; justify-content:space-between; align-items:center; padding-top:18px; border-top:1px solid rgba(148,163,184,.12)}
     footer a{color:var(--sky); text-decoration:none}
     footer a:hover{text-decoration:underline}
   </style>
@@ -69,22 +106,45 @@
       <div class="tag">Mission Text → Signed Plan → Shielded Execution</div>
     </header>
 
-    <p class="blurb">
-      <strong>What it is:</strong> local-first runtime that turns mission text into a <em>contracted plan</em>,
-      enforces safety with an online <em>shield</em>, and records a <em>replayable log</em> for audit.
-      Built for solar O&amp;M, forest patrol, and precision farming.
-    </p>
+    <section class="hero-intro">
+      <div class="hero-copy">
+        <p><strong>Local-first autonomy OS.</strong> Type the mission, receive a contracted plan, enforce it with a live shield, and walk away with a tamper-evident replay that auditors can re-run byte-for-byte.</p>
+        <div class="cta-row">
+          <a class="cta primary" href="assets/videos/planner.mp4" target="_blank" rel="noopener">▶ Watch 30 s acceptance run</a>
+          <a class="cta secondary" href="demo/demo_pack/scorecard.json" target="_blank" rel="noopener">⬇ Download signed evidence pack</a>
+        </div>
+      </div>
+      <aside class="hero-art">
+        <h3>Same mission text, two executions</h3>
+        <ul>
+          <li><b>Planner-on:</b> contracts enforced, shield active, produces signed pack + stable <code>replay_id</code>.</li>
+          <li><b>Baseline:</b> planner disabled → no contracts, no shield, replay diverges.</li>
+          <li>All evidence recorded in <code>logs/run-20251001-001429</code> with matching checksum in the pack.</li>
+        </ul>
+      </aside>
+    </section>
 
-    <div class="pillrow">
-      <span class="pill">Deterministic replay</span>
-      <span class="pill">Signed evidence</span>
-      <span class="pill">Contract-first planner</span>
-      <span class="pill">Radio-light mesh</span>
+    <div class="checklist">
+      <div class="check-item">
+        <div class="check-icon">✓</div>
+        <div class="check-body"><b>Deterministic replay.</b> Each acceptance run replays bit-for-bit (<code>replay_id=5a717fb25a2d5acb</code>) so regulators can recompute KPIs offline.</div>
+      </div>
+      <div class="check-item">
+        <div class="check-icon">✓</div>
+        <div class="check-body"><b>Signed evidence packs.</b> Every contract, KPI, and verifier output (coverage, NFZ, min-sep, latency) is bundled under <code>demo/demo_pack.tgz</code> with SHA256 + signature.</div>
+      </div>
+      <div class="check-item">
+        <div class="check-icon">✓</div>
+        <div class="check-body"><b>Contracts-first planner.</b> Mission text compiles into budgeted tasks (latency, comms) and gets notarised before execution.</div>
+      </div>
+      <div class="check-item">
+        <div class="check-icon">✓</div>
+        <div class="check-body"><b>Radio-light comms.</b> Planner/shield run on-edge with low-bandwidth summaries only; drop-late budget is enforced and logged.</div>
+      </div>
     </div>
 
     <div class="callout">
-      <b>What you’ll see below:</b> same mission text, two runs — <b>with planner</b> (contracts + shield)
-      vs <b>baseline</b>. Only the former yields a <b>signed evidence pack</b> and a stable <code>replay_id</code>.
+      <b>Below:</b> side-by-side acceptance clips plus the exact KPI delta. The planner-on arm is the GPD baseline that Speedrun reviewers receive today.
     </div>
 
     <section class="videogrid">
@@ -96,12 +156,18 @@
             Your browser does not support the video tag.
           </video>
         </div>
-        <div class="pillrow">
-          <span class="pill">min-sep ≥ 0.5 m</span>
-          <span class="pill">NFZ: PASS</span>
-          <span class="pill">replay_id stable</span>
-          <span class="pill">signed evidence pack</span>
-        </div>
+        <table class="metrics-table">
+          <thead>
+            <tr><th>Metric</th><th>Value</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Coverage % (tail-30)</td><td>79.0%</td></tr>
+            <tr><td>NFZ / Min-sep violations</td><td>0 / 11</td></tr>
+            <tr><td>Collisions</td><td>0</td></tr>
+            <tr><td>Replay ID</td><td><code>5a717fb25a2d5acb</code></td></tr>
+          </tbody>
+          <caption>Source: <a href="logs/run-20251001-001429/eval_summary.json" target="_blank" rel="noopener">eval_summary.json</a></caption>
+        </table>
       </article>
 
       <article class="card">
@@ -112,11 +178,17 @@
             Your browser does not support the video tag.
           </video>
         </div>
-        <div class="pillrow">
-          <span class="pill">no contracts</span>
-          <span class="pill">no shield</span>
-          <span class="pill">non-deterministic</span>
-        </div>
+        <table class="metrics-table">
+          <thead>
+            <tr><th>Metric</th><th>Value</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Coverage % (tail-30)</td><td>21.6%</td></tr>
+            <tr><td>NFZ / Min-sep violations</td><td>0 / 14</td></tr>
+            <tr><td>Replay ID</td><td>diverges after 90 s</td></tr>
+          </tbody>
+          <caption>Source: <a href="artifacts/holdout/holdout_summary.json" target="_blank" rel="noopener">holdout summary</a> (planner-off arm)</caption>
+        </table>
       </article>
     </section>
 
@@ -141,16 +213,48 @@
       </div>
     </section>
 
+    <section class="milestones">
+      <h3>Why now</h3>
+      <div class="progress-row">
+        <strong>Acceptance pack → reviewers (Today)</strong>
+        <progress value="100" max="100"></progress>
+        <p class="milestone-note">Delivered via <code>demo/demo_pack.tgz</code> (video, KPIs, verifiers, checksums).</p>
+      </div>
+      <div class="progress-row">
+        <strong>Two live pilots + open verifier (April)</strong>
+        <progress value="45" max="100"></progress>
+        <p class="milestone-note">Holdout tuning underway on the same GPD kernel; residual PPO unlock scheduled next.</p>
+      </div>
+    </section>
+
+    <section class="faq">
+      <h3>What auditors ask us</h3>
+      <div class="faq-item">
+        <h4>How deterministic is “deterministic”?</h4>
+        <p>Every replay bundles state deltas, mission JSON, and control patches. The checksum in <code>demo/demo_pack/manifest.json</code> matches the sealed <code>replay_id</code>, so third parties reproduce min-sep/NFZ stats without trusting our infra.</p>
+      </div>
+      <div class="faq-item">
+        <h4>Can I self-host the planner + shield?</h4>
+        <p>Yes. Both components run locally (no cloud callbacks). Set <code>ACC_BACKEND=gpd</code> for acceptance and the CLI uses gym-pybullet-drones with the same mission and control template we ship in the evidence pack.</p>
+      </div>
+      <div class="faq-item">
+        <h4>How do you enforce the contract at runtime?</h4>
+        <p>The shield tracks planner budgets (latency, comms, NFZ, min-sep). Budget overruns trigger drop-late or intervention, and every event lands in <code>events.jsonl</code> with a signature.</p>
+      </div>
+    </section>
+
     <!-- optional artifacts -->
     <div class="links">
       Evidence &amp; acceptance artifacts:
-      <a href="assets/evidence/acceptance_matrix.pdf">acceptance</a> •
-      <a href="assets/evidence/scorecard.pdf">KPI scorecard</a> •
-      <a href="assets/evidence/replay_logs.zip">replay logs</a>
+      <a href="demo/demo_pack/scorecard.json" target="_blank" rel="noopener">KPI scorecard</a> •
+      <a href="logs/run-20251001-001429/eval_summary.json" target="_blank" rel="noopener">eval summary</a> •
+      <a href="artifacts/holdout/holdout_summary.json" target="_blank" rel="noopener">holdout delta</a>
     </div>
 
     <footer>
-      <span>Videos: hosted natively on GitHub (≤100&nbsp;MB each)</span>
+      <span>Contact: <a href="mailto:pilot@flockpilot.ai">pilot@flockpilot.ai</a></span>
+      <span>Latest status: <a href="docs/PROJECT_STATUS.md" target="_blank" rel="noopener">PROJECT_STATUS.md</a></span>
+      <span>Videos hosted via repo assets (≤100&nbsp;MB each)</span>
     </footer>
   </div>
 </body>

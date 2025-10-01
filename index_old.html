@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>FlockPilot – LLM OS for Droids</title>
+  <meta name="description" content="Type the mission → contracted plan → shielded execution → tamper-evident replay. Side-by-side clips: with planner vs baseline." />
+  <meta name="theme-color" content="#0B1220" />
+  <style>
+    :root{
+      /* brand & text */
+      --bg0:#0B1220; --bg1:#0E2F34; --ink:#E6EBF5;
+      --teal:#14B8A6; --sky:#38BDF8; --slate:#94A3B8;
+      --card:#0f1b25; --ring:#1f3945; --muted:#6B7A8C;
+    }
+
+    *{box-sizing:border-box}
+    html,body{height:100%}
+
+    /* ORIGINAL gradient background (no image) */
+    body{
+      margin:0; color:var(--ink);
+      font:16px/1.55 system-ui,-apple-system,Segoe UI,Roboto,Inter,Arial,sans-serif;
+      background:
+        radial-gradient(1100px 800px at 90% 100%, rgba(13,62,67,.85) 0%, var(--bg0) 60%),
+        linear-gradient(135deg, var(--bg0) 0%, var(--bg1) 100%);
+    }
+
+    .wrap{max-width:1120px; margin:0 auto; padding:32px 20px 60px}
+    header h1{margin:6px 0 6px; font-weight:800; letter-spacing:.2px}
+    header .tag{color:var(--slate); font-size:1.05rem}
+
+    .blurb{margin:14px 0 10px; color:var(--slate); border-left:3px solid var(--teal); padding:10px 12px;}
+    .blurb strong{color:var(--ink); font-weight:800}
+
+    .pillrow{display:flex; gap:8px; flex-wrap:wrap; margin:10px 0 20px}
+    .pill{font-size:.82rem; color:#cfe7ff; background:#0b2a35; border:1px solid #1e3a46; padding:3px 8px; border-radius:999px;}
+
+    .callout{margin:8px 0 22px; color:var(--slate); font-size:.98rem}
+    .callout b{color:var(--ink)}
+
+    .videogrid{display:grid; gap:18px; grid-template-columns:1fr;}
+    @media (min-width:900px){ .videogrid{ grid-template-columns:1fr 1fr; } }
+    .card{background:var(--card); border:1px solid var(--ring); border-radius:14px; padding:14px 14px 18px; box-shadow:0 10px 30px rgba(0,0,0,.25);}
+    .card h3{margin:6px 8px 10px; font-size:1.05rem; font-weight:700}
+    .embed{width:100%; aspect-ratio:16/9; border-radius:10px; overflow:hidden; background:#09121a; border:1px solid #0f2a33;}
+    .embed video{width:100%; height:100%; display:block; background:#000}
+
+    .grid-3{display:grid; gap:14px; grid-template-columns:1fr; margin-top:24px}
+    @media (min-width:900px){ .grid-3{ grid-template-columns:repeat(3,1fr); } }
+    .mini{background:rgba(15,27,37,.72); border:1px solid var(--ring); border-radius:12px; padding:12px 14px}
+    .mini h4{margin:0 0 6px; font-size:1rem}
+    .mini p{margin:0; color:var(--slate); font-size:.95rem}
+    .mini ul{margin:0; padding-left:18px; color:var(--slate); font-size:.95rem}
+
+    .links{margin:18px 0 6px}
+    .links a{color:var(--sky); text-decoration:none}
+    .links a:hover{text-decoration:underline}
+
+    footer{margin-top:26px; color:var(--slate); font-size:.92rem; display:flex; gap:10px; flex-wrap:wrap}
+    footer a{color:var(--sky); text-decoration:none}
+    footer a:hover{text-decoration:underline}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <h1>FlockPilot – LLM OS for Droids</h1>
+      <div class="tag">Mission Text → Signed Plan → Shielded Execution</div>
+    </header>
+
+    <p class="blurb">
+      <strong>What it is:</strong> local-first runtime that turns mission text into a <em>contracted plan</em>,
+      enforces safety with an online <em>shield</em>, and records a <em>replayable log</em> for audit.
+      Built for solar O&amp;M, forest patrol, and precision farming.
+    </p>
+
+    <div class="pillrow">
+      <span class="pill">Deterministic replay</span>
+      <span class="pill">Signed evidence</span>
+      <span class="pill">Contract-first planner</span>
+      <span class="pill">Radio-light mesh</span>
+    </div>
+
+    <div class="callout">
+      <b>What you’ll see below:</b> same mission text, two runs — <b>with planner</b> (contracts + shield)
+      vs <b>baseline</b>. Only the former yields a <b>signed evidence pack</b> and a stable <code>replay_id</code>.
+    </div>
+
+    <section class="videogrid">
+      <article class="card">
+        <h3>With Planner (contracts + shield)</h3>
+        <div class="embed">
+          <video controls preload="metadata" playsinline poster="assets/posters/planner.jpg">
+            <source src="assets/videos/planner.mp4" type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
+        </div>
+        <div class="pillrow">
+          <span class="pill">min-sep ≥ 0.5 m</span>
+          <span class="pill">NFZ: PASS</span>
+          <span class="pill">replay_id stable</span>
+          <span class="pill">signed evidence pack</span>
+        </div>
+      </article>
+
+      <article class="card">
+        <h3>Baseline (planner off)</h3>
+        <div class="embed">
+          <video controls preload="metadata" playsinline poster="assets/posters/baseline.jpg">
+            <source src="assets/videos/baseline.mp4" type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
+        </div>
+        <div class="pillrow">
+          <span class="pill">no contracts</span>
+          <span class="pill">no shield</span>
+          <span class="pill">non-deterministic</span>
+        </div>
+      </article>
+    </section>
+
+    <!-- concise, Speedrun-friendly info -->
+    <section class="grid-3">
+      <div class="mini">
+        <h4>Why it’s different</h4>
+        <p>Vertical integration: <b>LLM planner</b> + <b>online shield</b> + <b>deterministic kernel</b>.
+           Not just a demo—<b>spec + conformance + signed evidence packs</b> (contracts & replay).</p>
+      </div>
+      <div class="mini">
+        <h4>What we prove (M0)</h4>
+        <p>Same <code>replay_id</code> (exact replay), <b>0 safety violations</b> (min-sep, NFZ),
+           budgets met (planner p95, drop-late, comms), parity across seeds.</p>
+      </div>
+      <div class="mini">
+        <h4>Deliverables</h4>
+        <ul>
+          <li><b>Today:</b> 30-second demo passes acceptance; <b>signed evidence pack</b> delivered</li>
+          <li><b>By April:</b> 2 live pilots; open spec + 1-command verifier; signed evidence packs; evolved planner; 20+ safety invariants; public replay set</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- optional artifacts -->
+    <div class="links">
+      Evidence &amp; acceptance artifacts:
+      <a href="assets/evidence/acceptance_matrix.pdf">acceptance</a> •
+      <a href="assets/evidence/scorecard.pdf">KPI scorecard</a> •
+      <a href="assets/evidence/replay_logs.zip">replay logs</a>
+    </div>
+
+    <footer>
+      <span>Videos: hosted natively on GitHub (≤100&nbsp;MB each)</span>
+    </footer>
+  </div>
+</body>
+</html>
