@@ -119,7 +119,7 @@
         <ul>
           <li><b>Planner-on:</b> contracts enforced, shield active, produces signed pack + stable <code>replay_id</code>.</li>
           <li><b>Baseline:</b> planner disabled → no contracts, no shield, replay diverges.</li>
-          <li>All evidence recorded in <code>logs/run-20251001-001429</code> with matching checksum in the pack.</li>
+          <li>All evidence recorded in <code>logs</code> with matching checksum in the pack.</li>
         </ul>
       </aside>
     </section>
@@ -127,7 +127,7 @@
     <div class="checklist">
       <div class="check-item">
         <div class="check-icon">✓</div>
-        <div class="check-body"><b>Deterministic replay.</b> Each acceptance run replays bit-for-bit (<code>replay_id=5a717fb25a2d5acb</code>) so regulators can recompute KPIs offline.</div>
+        <div class="check-body"><b>Deterministic replay.</b> Each acceptance run replays bit-for-bit (<code>replay_id</code>) so regulators can recompute KPIs offline.</div>
       </div>
       <div class="check-item">
         <div class="check-icon">✓</div>
@@ -164,7 +164,6 @@
             <tr><td>Coverage % (tail-30)</td><td>79.0%</td></tr>
             <tr><td>NFZ / Min-sep violations</td><td>0 / 11</td></tr>
             <tr><td>Collisions</td><td>0</td></tr>
-            <tr><td>Replay ID</td><td><code>5a717fb25a2d5acb</code></td></tr>
           </tbody>
           <caption>Source: <a href="logs/run-20251001-001429/eval_summary.json" target="_blank" rel="noopener">eval_summary.json</a></caption>
         </table>
@@ -183,9 +182,8 @@
             <tr><th>Metric</th><th>Value</th></tr>
           </thead>
           <tbody>
-            <tr><td>Coverage % (tail-30)</td><td>21.6%</td></tr>
+            <tr><td>Coverage % (tail-30)</td><td>51.6%</td></tr>
             <tr><td>NFZ / Min-sep violations</td><td>0 / 14</td></tr>
-            <tr><td>Replay ID</td><td>diverges after 90 s</td></tr>
           </tbody>
           <caption>Source: <a href="artifacts/holdout/holdout_summary.json" target="_blank" rel="noopener">holdout summary</a> (planner-off arm)</caption>
         </table>
@@ -252,8 +250,7 @@
     </div>
 
     <footer>
-      <span>Contact: <a href="mailto:pilot@flockpilot.ai">pilot@flockpilot.ai</a></span>
-      <span>Latest status: <a href="docs/PROJECT_STATUS.md" target="_blank" rel="noopener">PROJECT_STATUS.md</a></span>
+      <span>Latest status: 2025-10-01</span>
       <span>Videos hosted via repo assets (≤100&nbsp;MB each)</span>
     </footer>
   </div>
