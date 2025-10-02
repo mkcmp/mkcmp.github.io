@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <defs>
+    <style>
+      .ink{fill:#E6EBF5}
+      .line{stroke:#E6EBF5; stroke-width:2; stroke-linecap:round; opacity:.95}
+    </style>
+  </defs>
+  <!-- arms -->
+  <path class="line" d="M12 12 L28 28"/>
+  <path class="line" d="M52 12 L36 28"/>
+  <path class="line" d="M12 52 L28 36"/>
+  <path class="line" d="M52 52 L36 36"/>
+  <!-- rotors -->
+  <circle class="ink" cx="12" cy="12" r="5"/>
+  <circle class="ink" cx="52" cy="12" r="5"/>
+  <circle class="ink" cx="12" cy="52" r="5"/>
+  <circle class="ink" cx="52" cy="52" r="5"/>
+  <!-- body -->
+  <circle class="ink" cx="32" cy="32" r="6"/>
+</svg>
